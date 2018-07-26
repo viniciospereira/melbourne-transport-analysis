@@ -26,3 +26,4 @@ dataUrl <- "https://drive.google.com/open?id=1kJYcsqCwU2TSXGDC2UkfCaSmi9opArwW"
 download.file(dataUrl, "./data/getdata-projectfiles-UCI-HAR-Dataset.zip", method = "curl")
 # Store the date when the file was downloaded.
 dateDownloaded <- date()
+
