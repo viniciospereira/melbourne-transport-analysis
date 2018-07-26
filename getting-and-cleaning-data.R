@@ -11,19 +11,29 @@ if(!library(pacman, logical.return = TRUE)){
   library(pacman)
 }
 
-p_load(googledrive)
+p_load(data.table)
 
-# Downloading the data.
+# Define the data relative path.
+scanOnFolder0 <- 'data/MelbDatathon2018/Samp_0/ScanOnTransaction'
+scanOffFolder0 <- 'data/MelbDatathon2018/Samp_0/ScanOffTransaction'
+scanOnFolder1 <- 'data/MelbDatathon2018/Samp_1/ScanOnTransaction'
+scanOffFolder1 <- 'data/MelbDatathon2018/Samp_1/ScanOffTransaction'
 
-# Checks if data direcotry exists, if not creates it.
-if(!file.exists("./data")){dir.create("./data")}
+# Get the list of all data files.
+onFiles0 <- list.files(scanOnFolder0, recursive = TRUE,full.names = TRUE)
+offFiles0 <- list.files(scanOffFolder0, recursive = TRUE, full.names = TRUE)
+onFiles1 <- list.files(scanOnFolder1, recursive = TRUE,full.names = TRUE)
+offFiles1 <- list.files(scanOffFolder1, recursive = TRUE, full.names = TRUE)
 
-# Assigns the URL of the collection data to a variable.
-dataUrl <- "https://drive.google.com/open?id=1kJYcsqCwU2TSXGDC2UkfCaSmi9opArwW"
-# Downloads the data to data dorectory.
-
-
-download.file(dataUrl, "./data/getdata-projectfiles-UCI-HAR-Dataset.zip", method = "curl")
-# Store the date when the file was downloaded.
-dateDownloaded <- date()
-
+# Read all files in onFiles0.
+allOn <- data.frame()
+countFiles <- 0
+for (fileOn in onFiles0){
+  cmd <- paste0("gzip -dc ", fileOn)
+  dt <- fread(cmd, sep = "|")
+  
+  allOn <- rbind(allOn, dt)
+  
+  countFiles <- countFiles + 1
+  cat(countFiles, ' of ', length(onFiles0), '\n')
+}
