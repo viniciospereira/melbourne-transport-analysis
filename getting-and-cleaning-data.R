@@ -14,10 +14,10 @@ if(!library(pacman, logical.return = TRUE)){
 p_load(data.table)
 
 # Define the data relative path.
-scanOnFolder0 <- 'data/MelbDatathon2018/Samp_0/ScanOnTransaction'
-scanOffFolder0 <- 'data/MelbDatathon2018/Samp_0/ScanOffTransaction'
-scanOnFolder1 <- 'data/MelbDatathon2018/Samp_1/ScanOnTransaction'
-scanOffFolder1 <- 'data/MelbDatathon2018/Samp_1/ScanOffTransaction'
+scanOnFolder0 <- 'data/Samp_0/ScanOnTransaction'
+scanOffFolder0 <- 'data/Samp_0/ScanOffTransaction'
+scanOnFolder1 <- 'data/Samp_1/ScanOnTransaction'
+scanOffFolder1 <- 'data/Samp_1/ScanOffTransaction'
 
 # Get the list of all data files.
 onFiles0 <- list.files(scanOnFolder0, recursive = TRUE,full.names = TRUE)
